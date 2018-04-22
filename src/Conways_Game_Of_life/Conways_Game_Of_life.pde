@@ -25,8 +25,9 @@ void setup(){
 }
 
 void draw(){
+  //frameRate(1);
   background(0);
-  updateCells();
+  //updateCells();
   b++;
   println(b);
   
@@ -45,16 +46,16 @@ void draw(){
         Cell right = cells[x + 1][y];
         Cell left = cells[x - 1][y];*/
         
-        Cell[] neighbouringCells = new Cell[9];
+        Cell[] neighbouringCells = new Cell[8];
         neighbouringCells[0] = cells[x][y+1];
         neighbouringCells[1] = cells[x - 1][y + 1];
         neighbouringCells[2] = cells[x + 1][y + 1];
-        neighbouringCells[3] = cells[x + 1][y + 1];
-        neighbouringCells[4] = cells[x][y-1];
-        neighbouringCells[5] = cells[x - 1][y - 1];
-        neighbouringCells[6] = cells[x + 1][y - 1];
-        neighbouringCells[7] = cells[x + 1][y];
-        neighbouringCells[8] = cells[x - 1][y];
+        neighbouringCells[3] = cells[x][y-1];
+        neighbouringCells[4] = cells[x - 1][y - 1];
+        neighbouringCells[5] = cells[x + 1][y - 1];
+        neighbouringCells[6] = cells[x + 1][y];
+        neighbouringCells[7] = cells[x - 1][y];
+        //neighbouringCells[8] = cells[x][y];
         int liveCount = 0;
         for(int i = 0; i < neighbouringCells.length; i++){
           if(neighbouringCells[i].state == true){
@@ -65,15 +66,12 @@ void draw(){
         if(cells[x][y].state == true){
           if(liveCount < 2){
             cells[x][y].die();
-          }
-          if(liveCount == 2 || liveCount == 3){
+          } else if(liveCount == 2 || liveCount == 3){
            cells[x][y].live(); 
-          }
-          if(liveCount > 3){
+          } else if(liveCount > 3){
            cells[x][y].die(); 
           }
-        }
-        if(cells[x][y].state == false){
+        } else if(cells[x][y].state == false){
           if(liveCount == 3){
            cells[x][y].live(); 
           }
