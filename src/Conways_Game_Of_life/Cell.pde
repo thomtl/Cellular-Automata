@@ -14,4 +14,11 @@ class Cell {
     rect(x,y,rad,rad);
    }
  }
+ 
+ void die(){
+  this.state = false; 
+ }
+ void live(){
+  this.state = true; 
+ }
 }
