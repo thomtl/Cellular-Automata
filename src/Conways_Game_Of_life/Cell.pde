@@ -1,14 +1,16 @@
 class Cell {
  int x, y, rad;
  boolean state;
+ boolean nextState;
  Cell(int x, int y, int rad, boolean state){
   this.x = x;
   this.y = y;
   this.rad = rad;
-  this.state = state;
+  this.nextState = state;
  }
  
  void show(){
+   this.state = nextState;
    if(state == true){
     stroke(255);
     rect(x,y,rad,rad);
@@ -16,9 +18,9 @@ class Cell {
  }
  
  void die(){
-  this.state = false; 
+  this.nextState = false; 
  }
  void live(){
-  this.state = true; 
+  this.nextState = true; 
  }
 }

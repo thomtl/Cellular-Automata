@@ -11,7 +11,7 @@ void setup(){
  cells = new Cell[sclW + 6][sclH + 6];
  for(int y = 0; y < sclH + 6; y ++){
   for(int x = 0; x < sclW + 6; x ++){
-    if(random(0.0,1.0) < 0.1){
+    if(random(0.0,1.0) < 0.5){
         cells[x][y] = new Cell(x * 10, y * 10, 10, true);
     } else {
         cells[x][y] = new Cell(x * 10, y * 10, 10, false);
@@ -25,9 +25,9 @@ void setup(){
 }
 
 void draw(){
-  //frameRate(1);
+  frameRate(1);
   background(0);
-  //updateCells();
+  updateCells();
   b++;
   println(b);
   
@@ -79,7 +79,7 @@ void draw(){
      }
    }
   }
-  updateCells();
+  //updateCells();
 }
 
 void updateCells() {
