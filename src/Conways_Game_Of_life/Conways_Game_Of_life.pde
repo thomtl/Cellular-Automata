@@ -25,25 +25,14 @@ void setup() {
 void draw() {
   frameRate(15);
   background(0);
-  //updateCells();
   b++;
   println(b);
-  text(b, 0, 0);
+  noFill();
+  fill(255, 255, 255, 255);
+  text("Generations: " + b, 15, 25);
 
   for (int y = 3; y < sclH; y ++) {
     for (int x = 3; x < sclW; x ++) {
-      /*
-        Cell top = cells[x][y+1];
-       Cell topleft = cells[x - 1][y + 1];
-       Cell topRight = cells[x + 1][y + 1];
-       
-       Cell bottom = cells[x][y-1];
-       Cell bottomLeft = cells[x - 1][y - 1];
-       Cell bottomRight = cells[x + 1][y - 1];
-       
-       Cell right = cells[x + 1][y];
-       Cell left = cells[x - 1][y];*/
-
       Cell[] neighbouringCells = new Cell[8];
       neighbouringCells[0] = cells[x][y+1];
       neighbouringCells[1] = cells[x - 1][y + 1];
