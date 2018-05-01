@@ -1,11 +1,11 @@
-Cell[][] cells;
-
+Cell[][] cells; //<>//
+Cell ant;
 int sclW;
 int sclH;
 int b = 0;
 void setup() {
   size(800, 800);
-  background(0);
+  //background(0);
   //translate(0, 0);
   sclW = width / 10;
   sclH = height / 10;
@@ -15,22 +15,37 @@ void setup() {
       cells[x][y] = new Cell(x * 10, y * 10, 10, false);
     }
   }
-  int rx = 0//(int)random(0, sclW);
-  int ry = 0;//(int)random(0, sclH);
-  cells[rx][ry] = new Cell(cells[rx][ry].x, cells[rx][ry].y, cells[rx][ry].rad, true);
-  updateCells();
+  ant = new Cell((int)((sclW * 10) / 2), (int)((sclH * 10) / 2), 10, true);
+  println(ant.x, ant.y);
+  //updateCells();
 }
 
 void draw() {
-   frameRate(15);
-   background(0);
-   b++;
-   println(b);
-   noFill();
-   fill(255, 255, 255, 255);
-   text("Generations: " + b, 15, 25);
-   updateCells(); 
-  
+  frameRate(1);
+  background(0);
+  b++;
+  //println(b);
+  noFill();
+  fill(255, 255, 255, 255);
+  text("Generations: " + b, 15, 25);
+  for (int y = 0; y < sclH; y++) {
+    for (int x = 0; x < sclW; x++) {
+      if (x == ant.x / 10 && y == ant.y / 10) {
+        boolean state = cells[x][y].state;
+        if (state) {
+          ant.ndegs(true);
+          cells[x][y].flip();
+          ant.moveForward();
+        } else {
+          ant.ndegs(false);
+          cells[x][y].flip();
+          ant.moveForward();
+        }
+      }
+    }
+  }
+  updateCells();
+  // println("gr");
 }
 
 void updateCells() {
@@ -39,4 +54,5 @@ void updateCells() {
       cells[x][y].show();
     }
   }
+  ant.show();
 }
