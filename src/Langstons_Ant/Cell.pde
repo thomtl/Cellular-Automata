@@ -14,10 +14,12 @@ class Cell {
   void show() {
     this.state = nextState;
     if (state == true && isAnt == false) {
-      stroke(255);
+      stroke(50);
+      fill(255);
       rect(x, y, rad, rad);
-    } else if (state == true && isAnt == true) {
-      stroke(255, 0, 0);
+    } else if (isAnt == true) {
+      fill(255, 0, 0);
+      stroke(50);
       rect(x, y, rad, rad);
     }
   }
